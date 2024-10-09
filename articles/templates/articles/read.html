@@ -4,12 +4,15 @@
 
 
 <h2> {{article.tale_title}} </h2>
+<a href="{% url "accounts:index" %}">작성자 페이지 (현재는 접속한 계정 본인의 페이지로 넘어감) {{accounts.first_name}}</a>
+
+
 <h3> {{article.song_title}} </h3>
 <p> {{article.tale_content}} </p>
 
 <hr>
-<p> 좋아요 </p> 
-<p> 이 노래 플레이스트에 추가하기 </p>
+<p> 좋아요 누르기 </p> 
+<p> 이 노래 플레이스트에 추가하기 (API) </p>
 
 
 <a href="{% url "articles:create" %}">내 인생곡 추천하기</a>
@@ -22,9 +25,15 @@
 
 <a href="{% url "articles:update" article.pk %}">수정하기</a>
 
+{% comment %} 
 <form action="{% url "articles:update" article.pk %}" method="POST">
+    {% csrf_token %}
     <input type="submit" value="수정하기">
-</form>
+</form> 
+{% endcomment %}
+
+<br> <a href="{% url "articles:index" %}"> BACK </a> 
+
 
 {% endblock content %}
 

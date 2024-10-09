@@ -2,6 +2,16 @@
 
 {% block content %}
 
+<h3> 정말 계정을 삭제하시겠습니까 ? </h3>
+
+<form action="{% url "accounts:signout" %}" method="POST">
+  {% csrf_token %}
+  <input type="submit", value="회원정보 삭제">
+</form>
+<form action="{% url "accounts:index" %}" method="POST">
+  {% csrf_token %}
+  <input type="submit", value="뒤로가기">
+</form>
 
 
 

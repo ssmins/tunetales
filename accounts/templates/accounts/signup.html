@@ -2,10 +2,14 @@
 
 {% block content %}
 
+<h1>회원 가입</h1>
+<form action="{% url "accounts:signup" %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit", value="회원가입">
+</form>
 
-
-
-
+<a href="{% url "articles:index" %}"> BACK </a> 
 
 
 {% endblock content %}

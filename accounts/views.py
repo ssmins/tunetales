@@ -64,7 +64,7 @@ from django.contrib.auth.decorators import login_required
 @login_required 
 def logout(request): 
     auth_logout(request) 
-    return render(request, 'articles:index')
+    return render(request, 'articles/index.html')
 
 
 
@@ -85,10 +85,10 @@ def signup(request):
         return redirect('articles:index')
     # form 을 login 하는 것도 아니고 , save() 메서드를 사용한다 ? 
     if request.method == 'POST': 
-        form = CustomUserCreationForm(request, request.POST) 
+        form = CustomUserCreationForm(request.POST) 
         if form.is_valid(): 
             form.save() 
-            return redirect('articles:index') 
+            return render(request, 'accounts/welcome.html') 
     else: 
         form = CustomUserCreationForm() 
     context = {
