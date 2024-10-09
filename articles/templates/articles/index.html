@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Tunetales</h1>
+
+<a href="{% url "accounts:login" %}"> LOGIN </a>
+
+<a href="{% url "articles:create" %}">내 인생곡 추천하기</a>
+
+<p>HOT Tales: </p>
+{% if articles %}
+    {% for article in articles %}
+    <p> {{article.song_title}} </p>
+    <a href="{% url "articles:read" article.pk %} "> {{article.tale_title}} <br> 
+        {{article.tale_content|slice:"50"}} ..[더보기] </a>
+        
+    {% endfor %}
+
+{% else %}
+    <p> 작성된 사연이 없습니다. </p>
+    <a href="{% url "articles:create" %}">내 인생곡 추천하기</a>
+{% endif %}
+
+<br> 
+<a href="{% url "accounts:index" %}">마이페이지</a>
+
+
+<p>This week , Top 10 Most Popular Genres:</p>
+<p>Tunetales Monthly Magazine: </p>
+
+
+{% endblock content %}
+
+

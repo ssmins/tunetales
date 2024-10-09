@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Make your Tunetales</h2>
+<form action="{% url "articles:create" %}" method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" value="추억 공유하기">
+</form>
+
+
+{% endblock content %}
+
+
+
