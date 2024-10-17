@@ -7,7 +7,11 @@
 <a href="{% url "accounts:index" %}">작성자 페이지 (현재는 접속한 계정 본인의 페이지로 넘어감) {{accounts.first_name}}</a>
 
 
-<h3> {{article.song_title}} </h3>
+<h3> 
+    <a href="{{article.song_url}}" target="_blank">
+        {{article.song_title}} 
+    </a>
+</h3>
 <p> {{article.tale_content}} </p>
 
 <hr>

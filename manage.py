@@ -20,3 +20,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# 환경 변수 설정 .env 
+import dotenv 
+dotenv.load_dotenv() 

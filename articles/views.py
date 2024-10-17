@@ -23,6 +23,24 @@ def create(request):
     if request.method == 'POST': 
         form = ArticleForm(request.POST) # POST 방식으로 들어온 요청을 할당 
         if form.is_valid(): 
+
+            # spotify 검색 로직 
+            song_title = form.cleaned_data['song_title']
+            # spotify API 호출 
+            access_token = request.session.get('token_info', {}).get('access_token')
+            if access_token: 
+                headers = {
+                    'Authorization': f'Bearer {access_token}'
+                }
+                search_url = f'https://api.spotify.com/v1/search?q={song_title}&type=track&limit=1'
+                response = request.get(search_url, headers=headers)
+                if response.status_code == 200: 
+                    search_results = response.json()
+                    if search_results['tracks']['items']: 
+                        song_data = search_results['tracks']['items'][0] 
+                        # 곡 정보 저장 
+                        form.instance.song_url = song_data['external_urls']['spotify'] # spotify URL 저장 
+
             form.save() 
             return redirect('articles:index')
     else: 
